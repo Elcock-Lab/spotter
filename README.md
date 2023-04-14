@@ -1,4 +1,4 @@
-<img align="right" width="500" height="302" src="https://github.com/wm-hacker/spotter/blob/main/IMG/220526_spotter_overview.png">
+<img align="right" width="500" height="302" src="https://github.com/Elcock-Lab/spotter/blob/main/IMG/220526_spotter_overview.png">
 
 # _spotter_
 <br/>
@@ -1009,7 +1009,7 @@ appear in each simulation frame.
 
 
 <p align="center">
-	<img width="800" height="530" src="https://github.com/wm-hacker/spotter/blob/main/IMG/220526_movie_example.png">
+	<img width="800" height="530" src="https://github.com/Elcock-Lab/spotter/blob/main/IMG/220526_movie_example.png">
 </p>
 
 **Snapshot from a simulation of the _E. coli alaS_ operon**
@@ -1292,7 +1292,7 @@ and the evolution of supercoiling density in a 2-D plot:
 
 
 <p align="center">
-	<img width="538" height="480" src="https://github.com/wm-hacker/spotter/blob/main/IMG/example_kymo.png">
+	<img width="538" height="480" src="https://github.com/Elcock-Lab/spotter/blob/main/IMG/example_kymo.png">
 </p>
 
 Although the kymograph maker will provide data that can be used for plotting in a number of
