@@ -13,6 +13,8 @@ If you use _spotter_ in your work, please cite:
 
 Hacker, W.C., Elcock, A.H. (2023) _spotter_: A single-nucleotide resolution stochastic simulation model of supercoiling-mediated transcription and translation in prokaryotes. (preprint) bioRxiv.
 
+All code here was written by Will Hacker with the exception of some very helpful xtc utilities (see [External contributions](#external-contributions) below)
+
 <br/>
 
 ## GETTING STARTED: A TEST RUN WITH THE _E. coli alaS_ OPERON
