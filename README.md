@@ -1445,6 +1445,25 @@ Production of mRNAs is illustrated in the increasing z-axis position; RNAs are m
 in the flat region of the RNA plot; and the progress of degradation is indicated by decreasing
 RNA length in the period following.
 
+<br/>
+
+## EXTERNAL CONTRIBUTIONS
+
+The programs for visualization of simulation trajectories included in this repository rely on the xtc
+file format developed by Erik Lindahl and David van der Spoel. Files enabling the use of this format
+from these authors have been included without modification. They are (in the INCL directory):
+
+	xdrfile.h
+	xdr_file_xtc.h
+
+snd (in the SRC directory):
+
+	xdrfile.c
+	xdrfile_xtc.c
+
+Additional information can be found in the comments provided by the authors at the top of each
+of the listed files.
+
 
 
 
