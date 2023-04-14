@@ -177,7 +177,7 @@ to your system), or the program will not compile.
  ***If you don't have GSL on your system but want to run with its RNG:***
 
 It's definitely worth trying the command above in case there's a rogue version
-of GSL available on your system. If it's clear that GSL isn't unavailable on
+of GSL available on your system. If it's clear that GSL isn't available on
 your system, you can install it.
 
 You can download GSL following instructions at:
