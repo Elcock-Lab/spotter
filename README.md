@@ -7,6 +7,14 @@ _spotter_ (**s**imulator of **p**rokaryotic **o**peron **t**ranscriptional and *
 
 <br/>
 
+## CITING _spotter_
+
+If you use _spotter_ in your work, please cite:
+
+Hacker, W.C., Elcock, A.H. (2023) _spotter_: A single-nucleotide resolution stochastic simulation model of supercoiling-mediated transcription and translation in prokaryotes. (preprint) bioRxiv.
+
+<br/>
+
 ## GETTING STARTED: A TEST RUN WITH THE _E. coli alaS_ OPERON
 
 The test run below uses the _alaS_ sequence (provided in the EXAMPLES folder), but if a sequence
