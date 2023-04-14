@@ -1,0 +1,182 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   SUPERCOILING    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+	THIS FILE SETS UP A SIMULATION IN WHICH TRANSCRIPTION OCCURS WITHIN A CLOSED TOPOLOGICAL
+	DOMAIN: BARRIERS TO THE DIFFUSION OF SUPERCOILING ARE PRESENT UPSTREAM OF THE TSS AT THE
+	POSITION INDICATED (loc_start_barrier) AND DOWNSTREAM OF THE LAST BP TRANSCRIBED IN THE
+	OPERON (loc_stop_barrier). ALL OTHER PARAMETERS ARE IDENTICAL TO THOSE IN THE TEMPLATE
+	SUPERCOILING INPUT FILE.
+
+	***	DENOTES ENTRY DIFFERENT FROM TEMPLATE FILE (super.BASIC_TEMPLATE.inp)
+
+
+------------------
+GENERAL PARAMETERS
+------------------
+
+no_supercoiling_sim(y/n)                 n			<-- Switches "no supercoiling" setting on or off.
+								    If "y", RNAPs in the simulation interact only
+								    sterically--note that if a supercoiling file is
+								    not supplied (or this line does not appear in a
+								    file with "n" selected), it is assumed that the
+								    simulation does NOT include supercoiling.
+
+writhe_partition                         n			<-- If set to "y", distributes DNA under- or over-
+								    winding into twist and writhe based on DNA
+								    minicircle simulations; if set to "n", all
+								    supercoiling density is assigned to twist.
+
+starting_sigma                           -0.03			<-- Sets initial supercoiling density on the DNA 
+								    template. If template is a linearized template,
+								    starting sigma will be zero, overriding any value
+								    assigned here.
+
+tx_on_plasmid                            n			<-- If "n", transcription is assumed to be on a			***
+								    chromosomal template with topological barriers
+								    upstream of the TSS and downstream of the
+								    transcriptional stop site. If "y", transcription
+								    occurs on a linear template with freely-rotating
+								    ends if "linearized template" is selected in the
+								    next line or on a circular template if it is not
+								    selected.
+
+linearized_plasmid                       n			<-- See "tx_on_plasmid" above					***
+
+
+-----------------------------------
+SPECIFICATIONS FOR INSULATED DOMAIN
+-----------------------------------
+
+loc_start_barrier                        -4459			<-- If using a chromosomal template, this value sets		***
+								    the position of the upstream topological barrier
+								    relative to the TSS. If using a linerarized
+								    plasmid template, this value sets the length of
+								    the template upstream of TSS but does *NOT* set
+								    the position of a topological barrier. If using 
+								    an uncut plasmid, this value should be one-half
+								    of the length of the DNA separating transcription
+								    stop and start sites (e.g., -2500 if there are
+								    5000 bp between the end of the transcription unit
+								    and the TSS on the plasmid ring); as with the
+								    linearized plasmid case, a topological barrier is
+								    not set for the uncut plasmid template.
+
+loc_stop_barrier                       	 4459			<-- Value gives the the number of bp downstream of		*** 
+								    the end of the transcription unit. As above, if
+								    the template is chromosomal, this is also the
+								    location of a topological barrier. In the case of
+								    a linearized plasmid, this value only defines the
+								    total length of the DNA; and in the case of an
+								    uncut plasmid, the value should be set to 1/2 of
+								    the stop-to-start separation (2500 in the example
+								    above)
+
+---------------------------
+TOPOISOMERASE IA PARAMETERS
+---------------------------
+
+rate_topoisomerase_I(/sec)               0.000			<-- Sets the rate (/sec) at which topoisomerase I
+								    attempts to bind the DNA template; this is the
+								    rate at which attempts will be made on the 
+								    *entire* template length.
+
+inter_rnap_binding(y/n)                  y			<-- Allow/do not allow binding of topoisomerase I
+								    between transcribing RNAPs.
+
+guided_topo_binding(y/n)                 y			<-- If set to "y", only allow topoisomerase I binding
+								    upstream of the TSS.
+
+relative_topo_IA_ds_binding              0.1			<-- If "guided_binding" is off, relative probability
+								    of topoisomerase I binding downstream of preferred
+								    locations upstream of the TSS.
+
+lagtime_topo_IA(s)                       5.000			<-- Mean time after binding at which topoisomerase I
+								    becomes competent to relax DNA.
+
+p_rnap_topoIA_eject                      1.0			<-- Probability that when an RNAP encounters 
+								    topoisomerase I on the template that the RNAP will
+								    remove the enzyme rather than be obstructed.
+
+topo_IA_width                            50			<-- "Footprint" of topoisomerase I in bp.
+
+rel_extra_topo                           0.5			<-- Factor by which the probability of a successful
+								    binding attempt in regions downstream of the most-
+								    downstream RNAP is reduced.
+
+-----------------
+GYRASE PARAMETERS
+-----------------
+
+rate_gyrase(/sec)                        0.00			<-- Sets the rate (/sec) at which gyrase attempts to
+								    bind the DNA templae; as with the topoisomerase I
+								    rate, this a rate for the entire template region.
+
+guided_gyrase_binding(y/n)               y			<-- If set to "y", gyrase is only allowed to bind
+								    downstream of the last-transcribed position in the
+								    template.
+
+relative_gyrase_ds_affinity              1.0			<-- If guided gyrase binding is off, factor by which
+								    the affinity of a gyrase bound to a site upstream
+								    of the last transcribed site is reduced; the lower
+								    affinity is expressed as increased k off.
+
+p_rnap_gyrase_eject                      1.0			<-- Probability that a transcribing RNAP will displace
+								    rather than be blocked by a bound gyrase.
+
+max_gyrase_sigma                         -0.05			<-- Lowest sigma value to which gyrase activity is
+								    allowed to reduce local supercoiling density
+
+gyrase_width                             150			<-- "Footprint" of bound gyrase in bp.
+
+
+---------------
+RNAP PARAMETERS
+---------------
+
+max_torque_P2_P3_release                 -50.00			<-- Used to allow supercoiling-mediate effects on
+								    advanced pause states. If the torque experienced
+								    by an RNAP in state P2 or P3 at the site of its
+								    initial pause is equal to or less than this value
+								    (in pN.nm), the RNAP exits the pause
+
+min_upstream_sigma_move                  -0.10			<-- Minimum sigma value permitted for an RNAP to
+								    forward-translocate
+
+
+RNAP_relax_factor                        -1.0			<-- Relative rate at which RNAPs rotate to reduce
+								    disparities in upstream and downstream 
+								    supercoiling.  NOTE: SHOULD BE SET TO A NEGATIVE
+								    VALUE IN SIMULATIONS WITHOUT RNAP ROTATION.
+
+ribosome_resistance_model                implicit_RNAP_position <-- Sets rotational resistance model in simulations in
+								    which RNAPs undergo rotational relaxation. Options
+								    are: "flat resistance", in which resitance to 
+								    rotation is constant at all positions (set below);
+								    "none_RNA_only", in which only the length of the
+								    the attached nascent RNA is considered; 
+								    "implicit_RNAP_position", in which the number of
+								    ribosomes is estimated based on RNAP template
+								    position and the ribosome density asssigned below;
+								    "implicit_RNA_model", in which the number of
+								    ribosomes is estimated using the current RNA
+								    length (accounting for degradtion); and 
+								    "explict_ribosomes", which explicitly includes the
+								    effect of all ribosomes currently translating the
+								    nascent RNA.	
+
+implicit_interribo_dist(nt)              100.0			<-- Used to estimate the number of ribosomes
+								    translating an RNA in the implict resistance
+								    models above.
+
+flat_resist_parameter                    0.04			<-- Sets a value for rotation resistance at all sites
+								    when the "flat_resistance" model is used.
+
+length_exponent                          1.5			<-- Sets the exponent on the the length-dependent
+								    function used to determine RNA contribution to
+								    rotational resistance. Defaults to 1.5 (3/2).
+

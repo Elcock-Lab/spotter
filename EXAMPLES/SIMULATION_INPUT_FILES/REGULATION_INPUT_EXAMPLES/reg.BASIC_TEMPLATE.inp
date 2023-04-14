@@ -1,0 +1,54 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>    REGULATION     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+		THIS IS A "BASIC TEMPLATE" FOR A GENE REGULATION INPUT FILE. IN THIS FILE,
+		THE PROMOTER TOGGLES BETWEEN STATES IN WHICH IT IS AVAILABLE OR NOT
+		AVAILABLE FOR TRANSCRIPTION. TO SET THE PROMOTER TO A CONSTANT "ON STATE,
+		SET k_off BELOW TO ZERO.
+
+
+---------------------
+PROMOTER AVAILABILITY
+---------------------
+
+k_on(promoter)                          0.007			<-- Sets the rate at which a promoter in the inactive
+								    state (i.e., a promoter unavailable for RNAP
+								    binding) changes to the active state (in which it
+								    can bind RNAPs). This value is dervied from So...
+								    Golding, Nat Genetics 2010.
+
+use_frac_on(y/n)                        y			<-- If "y", use the frac_on value below to calculate
+								    the active promoter -> inactive promoter reaction
+								    rate; if "no", use the listed "k_off" value for
+								    this reaction.
+
+frac_on                                 0.33333			<-- If "use_frac_on" is on, sets the fraction of the
+								    time that the promoter for RNAP binding.
+
+k_off(promoter)                         0.031			<-- Sets the rate at which the promoter changes from
+								    the active state to the inactive state ( / sec).
+								    Used only is "use_frac_on" is set to "n".
+
+------------------
+GENERAL PARAMETERS
+------------------
+
+shutoff_equivalent                       90.0			<-- Sets a time in simulations without promoter
+								    deactivation for measuring rates to compare to
+								    those in simulations with promoter shutoff.
+
+warm_up_time(s)                          -99999.0		<-- Sets a time in simulations before which RNAPs
+								    are not allowed load. Set to negative value to
+								    omit.
+
+warm_up_std_dev(s)                       0.01			<-- Sets standard deviation in draw for initial
+								    delay in RNAP loading.
+
+warm_up_min(s)                           0.0			<-- Sets a minimum value for the initial delay in
+								    RNAP loading.
+

@@ -1,0 +1,40 @@
+Files in this folder are connected to Figures 4 and 6 though 8 of the text.
+
+All input files use an RNAP rate file including the E. coli rpoB gene 
+where transcription reaction rates have been determined under the assumption
+that the mean lone-RNAP transcriptional elongation rate in the absence of 
+supercoiling in 6.168 nt per second.
+
+Because the simulations described in the paper were designed to explore
+single-molecule experiments without translation, all input files in this
+folder are set to the translation off option.
+
+All input files also include RNAP rotational relaxation rates determined
+by RNA length as described in the paper and the full complement of off
+pathway backtracking reactions described there.
+
+One input file corresponds to simulations representing a linearized 
+plasmid transcriptional template (Figures 4 and 6 in the text):
+
+	rpoB.lone_RNAP.linearized_plasmid.consolidated.inp
+
+Simulations run with this input file will feature single RNAP runs on a 
+template with freely-rotating DNA ends
+
+Two input files correspond to simulations in which transcription occurs
+within an insulated topological domain (Figures 7 and 8 of the text):
+
+	rpoB.lone_RNAP.topo_domain.consolidated.inp
+
+and
+
+	rpoB.mulitple_RNAP.topo_domain.P23_release.consolidated.inp
+
+The first of the files is designed for single-run RNAP simulations, while
+the second, which includes an assistive-torque-mediated release from pause
+states P2 and P3, is designed for simulations with mulitple RNAPs
+transcribing simultaneously.
+
+
+
+

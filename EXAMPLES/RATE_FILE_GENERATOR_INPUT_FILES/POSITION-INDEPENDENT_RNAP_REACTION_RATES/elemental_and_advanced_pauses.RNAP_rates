@@ -1,0 +1,20 @@
+kp2                0.2		<- Rate of P1 -> P2 reaction
+				   (elemental pause -> first advanced pause)
+
+kp3                0.022	<- Rate of P2 -> P3 reaction
+				   (transition into longest-lived pause state)
+
+ke1                1.77		<- Rate of P1 -> pre-translocated state reaction
+				   (escape from elemental pause)
+
+ke2                0.241	<- Rate of P2 -> pre-translocated state reaction
+				   (escape from P2 pause)
+
+ke3                0.01		<- Rate of P3 -> pre-translocated state reaction
+				   (escape from P3 pause)
+
+kN                 250000000	<- Rate of NT association
+
+kc                 500		<- Rate of NT addition
+
+kd                 1000		<- Rate of NT dissociation
