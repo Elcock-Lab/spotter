@@ -514,19 +514,13 @@ void Assign_RNA_and_ribosome_positions(char *line, int num_rna,
 	}	
 	else {
 		bt_offset = 9999;
-printf("CHECKING %d RNAPS: ",num_RNAP_check);
 		for (i = 1; i <= num_RNAP_check; i++) {
-printf("RNAP %d AT %d; ",i,RNAP_BT_checklist[i]);
 		    if (RNAP_BT_checklist[i] > end + 1) {				// For post-transloc state
 				continue;
 		    }
 		    bt_offset = (bt_offset < end - RNAP_BT_checklist[i] ? 
 				 bt_offset : end - RNAP_BT_checklist[i]);
 		}
-
-
-printf("\n");
-printf("FRAME IS %d; END WAS %d; BT OFFSET IS %d; END REASSIGNED TO %d\n",frame,end,bt_offset,end-bt_offset);
 
 		end -= bt_offset;
 		x = rnap_pos[end][0];
