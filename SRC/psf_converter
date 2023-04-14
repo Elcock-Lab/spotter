@@ -1,0 +1,19 @@
+# Converts .psf files to format appropriate for older versions of VMD
+
+awk '/PSF/,/NATOM/' $1 > temp_psf_start
+awk '/NATOM/{flag=1; next} /NBOND/{flag=0} flag' $1 > temp_psf_mid
+awk '/NBOND/{flag=1} flag' $1 > temp_psf_end
+
+head -n -1 temp_psf_mid > tempity
+mv tempity temp_psf_mid 
+rm temp_psf_mid2
+cat temp_psf_mid | while read line; do
+
+        echo $line | awk '{printf "%8d%2s%5d%3s%4s%5s%11.5f%14.4f%12d\n", $1,"U",$1,"DNA","N","N",0.0,1000.0,0}' >> temp_psf_mid2
+
+done
+
+echo "" >> temp_psf_mid2
+
+cat temp_psf_start temp_psf_mid2 temp_psf_end > converted.psf
+rm temp_psf_start temp_psf_mid temp_psf_mid2 temp_psf_end
