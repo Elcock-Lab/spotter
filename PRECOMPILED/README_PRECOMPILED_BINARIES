@@ -1,0 +1,68 @@
+This folder contains pre-compiled versions of the programs produced by the
+makefile in the folder above.
+
+The following have a good chance of being functional on an arbitrary
+system:
+
+	rnap_rate_file_generator
+
+	ribosome_rate_file_generator
+
+	spotter.C_builtin_RNG
+
+	trajectory_movie_maker
+
+	zoomin_movie_maker
+
+	kymograph_maker
+	
+	rna_trajectory_plotter
+
+There are three pre-compiled GSL-dependent versions of the simulation runner:
+
+	spotter.startup
+
+	spotter.static_build2
+
+	spotter.dynamic_build
+
+The first version was compiled with static linkage to the GSL library
+(GCC 4.4.7 using archive files from GSL 1.15 on a machine using GLIBC 2.12 and
+CentOS 6.9). The binary worked on all of the machines (older and newer) on 
+which we attempted to run it, but the test set was limited and the binary may
+not work in all environments.
+
+The second version (spotter.static_build2) was compiled with the same GSL
+archive files but with GCC 5.4 on a machine using GLIBC 2.17 and the CentOS
+7.9.2009 operating system. It may work on machines with newer/updated C
+libraries but will not work on older machines on which it does not have access
+to these libraries.
+
+The third version (spotter.dynamic_build) was compiled with dynamic linkage to
+shared GSL library files (version 2.3) using GCC 5.4 on a machine with the
+CentOS 7.9.2009 operating system. There's a good chance it won't work with
+many setups (it will definitely not work if GSL has not been installed), but
+it may be worth trying on a newer machine.
+
+This folder also includes a GSL-independent version of the simulation runner:
+
+	spotter.C_builtin_RNG
+
+This version of the simulation runner is the most likely to run without
+recompilation but uses a lower-quality RNG (see README_COMPILATION)--if you
+have access to GSL, you'll want to recompile in order to take advantage of
+the much better RNG it offers.
+
+All pre- and post-simulation programs were compiled on a machine with the
+CentOS 7.9.2009 OS using GCC 5.4.
+
+TROUBLESHOOTING:
+
+The simulation runner has been written to reduce demand on the stack, but if
+simulations make it through some set-up steps but run into a segmentation
+fault before the simulation proper begins, you can try removing limits on
+stack size with:
+
+	ulimit -s unlimited
+
+Current stack size can be checked with "ulimit -a".	
