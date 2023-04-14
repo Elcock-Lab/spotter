@@ -1456,7 +1456,7 @@ from these authors have been included without modification. They are (in the INC
 	xdrfile.h
 	xdr_file_xtc.h
 
-snd (in the SRC directory):
+and (in the SRC directory):
 
 	xdrfile.c
 	xdrfile_xtc.c
