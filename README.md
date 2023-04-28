@@ -414,7 +414,9 @@ The flags are as follows:
   |`-seed`|integer|Optional. If provided, it is used to seed the random sequence assignment when "random" is selected for -sequence. If a random sequence is requested without a seed, seeding is based on system time.|
   |`-repeat`|A/T/C/G|Optional. If provided, gives the base that will be repeated in making the uniform sequence. Defaults to "A" if the flag is not used.|
   |`-param`|file name|Optional. Gives the name of the file to be used in calculating elemental-pause entry reactions. Defaults to a file in which advanced pause entry rates are set to zero.|
-  |`-scrunch`|n/a|Optional. If flag is included, rates of translocation for the intial 9 positions in the template are calculated assuming that DNA is "scrunched" into an RNAP that remains stationary at the promoter. If flag is not included, rates are  calculated as if a complete RNA/DNA hybrid existed at these positions|
+  |`-bubble`|integer|Optional. Sets the size of the transcription bubble. Defaults to 12 nt if the flag is not provided. Note that the sequence may need to be extended in upstream direction if a large bubble is requested |
+  |`-hybrid`|integer|Optional. Sets the size of the RNA/DNA hybrid in the transcription bubble. Defaults to 9 if the flag is not provided. Note: the value provided here should be at least 2 nt shorter than the size of the transcription bubble.
+  |`-scrunch`|n/a|Optional. If flag is included, rates of translocation for the intial 9 positions (or supplied hybrid length) in the template are calculated assuming that DNA is "scrunched" into an RNAP that remains stationary at the promoter. If flag is not included, rates are  calculated as if a complete RNA/DNA hybrid existed at these positions.|
   |`-slide`|n/a|Optional. If flag is included, the upstream bubble edge is assumed to move downstream immediately on the forward translocation step, producing a constant bubble size. If flag is not included, the upstream bubble edge advances downstream on nucleotide addition.|
 						
 <br/>
