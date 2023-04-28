@@ -9,7 +9,8 @@ void Align_sequence_with_TSS(char *orig_seq, char *final_seq,
 double Calculate_energies(int site, char *dna_seq, int dir,
                           double dna_init_GC, double dna_init_AT,
                           double rna_dna_init, double *transloc_energy,
-                          double *rna_hybrid, int scrunch,
+                          double *rna_hybrid, int bubble_adj,
+			  int hybrid_adj, int scrunch,
                           int sliding_window);
 
 void Write_energies(int aligned_start, int aligned_stop,
@@ -17,7 +18,8 @@ void Write_energies(int aligned_start, int aligned_stop,
                     int dir);
 
 void Assign_hybridization_energies(char *seq_name, int start_pos,
-                                   int stop_pos, char *scruncher,
+                                   int stop_pos, int bubble_adj,
+				   int hybrid_adj, char *scruncher,
                                    char *slider);
 
 void Read_NET_seq_energy_function(double energies[][4]);
