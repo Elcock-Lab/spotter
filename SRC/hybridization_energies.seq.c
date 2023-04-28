@@ -186,7 +186,8 @@ double Find_energy_parameter(char *seq, energy_form *nearest)
 double Calculate_energies(int site, char *dna_seq, int dir,
 			  double dna_init_GC, double dna_init_AT,
 			  double rna_dna_init, double *transloc_energy,
-			  double *rna_hybrid, int scrunch,
+			  double *rna_hybrid, int bubble_adj,
+			  int hybrid_adj, int scrunch,
 			  int sliding_window)
 {
 	int i,ctr = -1,upstream,start_hybr;
@@ -201,6 +202,7 @@ double Calculate_energies(int site, char *dna_seq, int dir,
 		else {
 			upstream = site - 11;
 		}
+		upstream -= bubble_adj;
 		for (i = upstream - 1; i <= site + 2; i++) {
 			ctr++;
 			sequence[ctr] = dna_seq[Wraparound(i)];
@@ -269,16 +271,17 @@ double Calculate_energies(int site, char *dna_seq, int dir,
 			   	Find_energy_parameter(str,dna_dna_nearest);
 		}
 		if (scrunch) {
-			start_hybr = 11;
+			start_hybr = 11 + (bubble_adj - hybrid_adj);
 		}
 		else {
-			start_hybr = 3;
+			start_hybr = 3 + (bubble_adj - hybrid_adj);
 		}
 		if (i >= start_hybr && i < ctr - 1 &&
 		    (!(scrunch) || scrunch > 1)) {
 			hybrid_energy +=
 				Find_energy_parameter(str,rna_dna_nearest);
-			if (i > 3 || (!sliding_window)) {
+			if (i > 3 + (bubble_adj - hybrid_adj) ||
+			    (!sliding_window)) {
 				*transloc_energy +=
 					Find_energy_parameter(
 						str,rna_dna_nearest);
@@ -357,7 +360,8 @@ void Write_energies(int aligned_start, int aligned_stop,
 }	
 
 void Assign_hybridization_energies(char *seq_name, int start_pos,
-				   int stop_pos, char *scruncher,
+				   int stop_pos, int bubble_adj,
+				   int hybrid_adj, char *scruncher,
 				   char *slider)
 {
         int i,downstream_gap,ctr;
@@ -418,11 +422,12 @@ void Assign_hybridization_energies(char *seq_name, int start_pos,
 	}
 	
 	ctr = 0;
-	for (i = aligned_start - 1; i <= aligned_start + 7; i++) {
+	for (i = aligned_start - 1; i <= aligned_start + 7 + hybrid_adj; i++) {
 		forward[i] = Calculate_energies(i,dna_seq,0,dna_init_GC,
 						dna_init_AT,rna_dna_init,
 						&transloc_energy,
-						&rna_hybrid,ctr,
+						&rna_hybrid, bubble_adj,
+						hybrid_adj, ctr,
 						SLIDING_WINDOW);
 		f_pre[i] = forward[i];
 		f_post[i] = transloc_energy;
@@ -430,33 +435,35 @@ void Assign_hybridization_energies(char *seq_name, int start_pos,
 			ctr++;
 		}
 	}
-	for (i = aligned_start + 8; i <= aligned_stop + 1; i++) {
+	for (i = aligned_start + 8 + hybrid_adj; i <= aligned_stop + 1; i++) {
 		forward[i] = Calculate_energies(i,dna_seq,0,dna_init_GC,
 						dna_init_AT, rna_dna_init,
 						&transloc_energy,
-						&rna_hybrid,0,
+						&rna_hybrid, bubble_adj,
+						hybrid_adj, 0,
 						SLIDING_WINDOW);
 		f_pre[i] = forward[i];
 		f_post[i] = transloc_energy;
 	}
 	if (SCRUNCH) {
-		transition_cf = Calculate_energies(aligned_start+8,
+		transition_cf = Calculate_energies(aligned_start+8+hybrid_adj,
 						   dna_seq,0,dna_init_GC,
 						   dna_init_AT,
 						   rna_dna_init,
 						   &transloc_energy,
-						   &rna_hybrid,9,
+						   &rna_hybrid, bubble_adj,
+						   hybrid_adj, 9 + hybrid_adj,
 						   SLIDING_WINDOW);
 		printf("SCRUNCHED/UNSCRUNCHED CF: %f %f\n",
-			transition_cf,f_post[aligned_start+8]);
-		diff = f_post[aligned_start+8] - transition_cf;
-		for (i = aligned_start - 1; i <= aligned_start + 7; i++) {
+			transition_cf,f_post[aligned_start+8+hybrid_adj]);
+		diff = f_post[aligned_start+8+hybrid_adj] - transition_cf;
+		for (i = aligned_start - 1; i <= aligned_start + 7 + hybrid_adj; i++) {
 			forward[i] += diff;
 			f_pre[i] += diff;
 			f_post[i] += diff;
 		}
-		forward[aligned_start+8] = f_post[aligned_start+8];
-		f_pre[aligned_start+8] = f_post[aligned_start+8];
+		forward[aligned_start+8+hybrid_adj] = f_post[aligned_start+8+hybrid_adj];
+		f_pre[aligned_start+8+hybrid_adj] = f_post[aligned_start+8+hybrid_adj];
 	}
 
 	Write_energies(aligned_start,aligned_stop,forward,f_pre,f_post,0);

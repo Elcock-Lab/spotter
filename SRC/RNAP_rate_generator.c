@@ -20,6 +20,7 @@ int main (int argc, char *argv[])
 	int NORMALIZE_RATES=1;
 	int tx_start=1,tx_stop=100,rand_seed=-1;
 	int new_start,new_stop;
+	int bubble_adj=0,hybrid_adj=0;
 	double mean_elong=30.0;
 	char flat_repeat[100],param_file[500],seed_label[500];
 	char scrunch[200],window[200];
@@ -101,6 +102,14 @@ int main (int argc, char *argv[])
 			i++;
 			strcpy(param_file,argv[i]);
 		}
+		if (strcmp(argv[i],"-bubble") == 0) {
+			i++;
+			bubble_adj = strtod(argv[i],NULL) - 12;
+		}
+		if (strcmp(argv[i],"-hybrid") == 0) {
+			i++;
+			hybrid_adj = strtod(argv[i],NULL) - 9;
+		}
 		if (strcmp(argv[i],"-scrunch") == 0) {
 			sprintf(scrunch,"scrunch");
 		}
@@ -153,7 +162,23 @@ int main (int argc, char *argv[])
 		printf("TX STOP IS %d\n",tx_stop);
 	}
 
+	if (!(bubble_adj)) {
+		printf("USING DEFAULT BUBBLE SIZE OF 12 NT\n");
+	}
+	else {
+		printf("USING USER-SPECIFIED BUBBLE SIZE OF: %d\n",
+			12 + bubble_adj);
+	}
+	if (!(hybrid_adj)) {
+		printf("USING DEFAULT HYBRID LENGTH OF 9 NT\n");
+	}
+	else {
+		printf("USING USER-SPECIFIED HYBRID LENGTH OF: %d\n",
+			9 + hybrid_adj);
+	}
+
 	Assign_hybridization_energies(seq_file, tx_start, tx_stop,
+				      bubble_adj, hybrid_adj,
 				      scrunch, window);
 
 	if (USE_NET_SEQ) {

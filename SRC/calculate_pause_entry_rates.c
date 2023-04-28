@@ -185,6 +185,8 @@ double Find_dwell_time(double kp)
 	p01 = kf/(kf+kp);
 	p12 = kN/(kN+kb);							// These two kept
 	p10 = 1 - p12;								// here for clarity
+	p23 = 1.0;
+	p21 = 0.0;
 	P03 = (p01*p12*p23)/(1-(p10*p01)-(p12*p21));
 	Ptot = 1- P03;
 	Pmin = kp/(kf+kp);
