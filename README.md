@@ -7,7 +7,7 @@ _spotter_ (**s**imulator of **p**rokaryotic **o**peron **t**ranscriptional and *
 
 <br/>
 
-### (Please note: all of the example applications described below will be posted into the EXAMPLES folder as soon as the paper describing _spotter_ in detail is posted, i.e. very soon)
+
 
 
 ## CITING _spotter_
