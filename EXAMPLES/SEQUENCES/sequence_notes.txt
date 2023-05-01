@@ -1,0 +1,55 @@
+alaS
+----
+
+- Padding +/- 12 nt
+
+	Use:	-tx_start 13
+		-tx_stop 2769
+
+- Gene boundaries (relative to TSS):
+
+  Gene 1 start:	80
+  Gene 1 stop:	2710
+
+
+
+gapA
+----
+
+- Padding: +/- 14 nt
+
+	Use:	-tx_start 15
+		-tx_stop 1097
+
+
+	in making RNAP rate files
+
+- Gene boundaries (relative to TSS):
+
+  Gene 1 start: 37
+  Gene 2 stop:	1032
+
+
+
+marRAB
+------
+
+- Padding: +/- 14 nt
+
+	Use:	-tx_start 15
+		-tx_stop 1169
+
+- Gene boundaries (relative to TSS):
+
+  Gene 1 start:	28
+  Gene 1 stop:	462
+
+  Gene 2 start:	482
+  Gene 2 stop:	865
+
+  Gene 3 start: 897
+  Gene 3 stop:	1115
+
+  
+
+

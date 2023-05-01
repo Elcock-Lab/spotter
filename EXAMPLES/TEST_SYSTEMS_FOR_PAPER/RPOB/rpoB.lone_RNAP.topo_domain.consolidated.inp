@@ -1,0 +1,283 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>   SYSTEM   <<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-------------------
+SIMULATION SETTINGS
+-------------------
+
+promoter_name                            rpoB
+stable_RNA(y/n)                          n
+translated(y/n)                          n
+total_sim_time(min)                      30.0
+quiet_mode_on                            y
+
+
+------------------
+POSITION REPORTING
+------------------
+
+snapshot_time(min)                       30
+
+-------------------
+SEQUENCING SETTINGS
+-------------------
+
+seq_window_start(min)                    0.00001
+seq_window_stop(min)                     30
+seq/trace_frequency(Hz)                  25.0
+
+-----------------------------
+HYBRIDIZATION (FISH) SETTINGS
+-----------------------------
+
+sample_window_start(min)                 1
+sample_window_stop(min)                  15
+5_prime_start                            39
+5_prime_stop                             1039
+3_prime_start                            2113
+3_prime_stop                             3113
+
+--------------------------------
+DWELL-TIME DISTRIBUTION SETTINGS
+--------------------------------
+
+report_dwelltime_distrib(y/n)            n
+DWT_window(nt)                           4
+DWT_start_loc                            100
+DWT_stop_loc                             4000
+
+------------------------------
+SINGLE-MOLECULE TRACE SETTINGS
+------------------------------
+
+one_RNAP_run(y/n)                        y
+singlemol_trace(y/n)                     y
+
+------------------
+KYMOGRAPH SETTINGS
+------------------
+
+make_kymograph(y/n)                      n
+kymo_duration(s)                         100.0
+kymo_start_time(s)                       175.0
+kymo_increment(s)                        0.01
+kymo_min_pos(bp)                         100
+kymo_max_pos(bp)                         450
+kymo_window(bp)                          1000
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>    TRANSCRIPTION   <<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+----------------------------
+BINDING AND ACTIVATION RATES
+----------------------------
+
+k_binding(RNAP)                          0.01
+k_unbinding(RNAP)                        0.00
+k_closed_to_open(RNAP)                   10000.0
+max_RNAP_loading_gap                     1000000
+
+---------------------------------
+POSITION-DEPENDENT REACTION RATES
+---------------------------------
+
+rnap_dwell_file                          rnap_rates.rpoB.norm_to_6.17_nt_per_sec
+
+-----------------------------------
+POSITION-INDEPENDENT REACTION RATES
+-----------------------------------
+
+kp2                                      0.199
+kp3                                      0.022
+ke1                                      1.77
+ke2                                      0.241
+ke3                                      0.01
+kN                                       250000000
+kc                                       22.04
+kd                                       1000
+
+--------------
+RNAP FOOTPRINT
+--------------
+
+RNAP_width(bp)                           35
+
+------------------------
+CONTACT-MEDIATED EFFECTS
+------------------------
+
+min_effector                             2
+rnap_antipause                           0
+ribo_antipause                           0
+ribo_rnap_range                          2
+p_rnap_rnap_push                         -0.01
+p_ribosome_rnap_push                     -0.01
+
+-----------------------
+BACKTRACKING PARAMETERS
+-----------------------
+
+backtracking_model(y/n)                  y
+max_backtrack_depth(nt)                  10
+bt_adjustment                            10.0
+max_backtrack                            10
+
+-----------------------
+ADDITONAL MODEL OPTIONS
+-----------------------
+
+no_pause_model(y/n)                      n
+anticascade_model(y/n)                   n
+bubble_adjust(y/n)                       y
+upstream_bubble(nt)                      10
+downstream_bubble(nt)                    2
+DNA_scrunching(y/n)                      n
+RNA/DNA_hybrid_length(bp)                9
+TSS_size_adj(bp)                         0
+
+----------------------------
+SURVEILLANCE AND TERMINATION
+----------------------------
+
+k_term_stalled_RNAP(/sec)                0.0
+mfd_surveillance_time(mean,s)            99999999
+mfd_evaluation_window(s)                 99999999
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>   TRANSLATION   <<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-----------------------------------------
+POSITION-SPECIFIC RIBOSOME REACTION RATES
+-----------------------------------------
+
+ribo_dwell_file                         ribo_rates.rpoB
+
+------------------
+RIBOSOME FOOTPRINT
+------------------
+
+ribosome_width(bases)                   29
+
+--------------------------
+RNA DEGRADATION PARAMETERS
+--------------------------
+
+mean_mRNA_lifetime(s)                   155.4
+k_continue_degr(bases/s)                30
+degradation_width(bases)                10
+
+----------
+CSAT RATES
+----------
+
+k_ribo_coll_abort(/sec)                 -0.01
+
+----------------
+PROTEIN LIFETIME
+----------------
+
+mean_protein_lifetime(s)                100000000000
+
+------------------------------------
+GENE-SPECIFIC TRANSLATION PARAMETERS
+------------------------------------
+
+min_ribo_dwell(sec/base)                0.000100
+num_RBS                                 1		
+RBS_loc(rel_to_tx_start)                1   80
+tsl_stop(rel_to_tx_start)               1   2710
+k_loading_RBS                           1   0.1200
+mean_rate_tsl(bases/sec)                1   30.0
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>   SUPERCOILING   <<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+------------------
+GENERAL PARAMETERS
+------------------
+
+no_supercoiling_sim(y/n)                 n
+writhe_partition                         y
+starting_sigma                           -0.0
+tx_on_plasmid                            n
+linearized_plasmid                       n
+
+-----------------------------------
+SPECIFICATIONS FOR INSULATED DOMAIN
+-----------------------------------
+
+loc_start_barrier                        -4459
+loc_stop_barrier                       	 4459
+
+---------------------------
+TOPOISOMERASE IA PARAMETERS
+---------------------------
+
+rate_topoisomerase_I(/sec)               1.000
+inter_rnap_binding(y/n)                  y
+guided_topo_binding(y/n)                 y
+relative_topo_IA_ds_binding              0.1
+lagtime_topo_IA(s)                       5.000
+p_rnap_topoIA_eject                      1.0
+topo_IA_width                            50
+rel_extra_topo                           0.5
+
+-----------------
+GYRASE PARAMETERS
+-----------------
+
+rate_gyrase(/sec)                        1.00
+guided_gyrase_binding(y/n)               y
+relative_gyrase_ds_affinity              1.0
+p_rnap_gyrase_eject                      1.0
+max_gyrase_sigma                         -0.05
+gyrase_width                             150
+
+---------------
+RNAP PARAMETERS
+---------------
+
+max_torque_P2_P3_release                 -9999999.9
+min_upstream_sigma_move                  -0.10
+RNAP_relax_factor                        1.0
+ribosome_resistance_model                implicit_RNAP_position
+implicit_interribo_dist(nt)              100.0
+flat_resist_parameter                    0.04
+length_exponent                          1.5
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>   REGULATION   <<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+---------------------
+PROMOTER AVAILABILITY
+---------------------
+
+k_on(promoter)                          0.007
+use_frac_on(y/n)                        y          #If "y", use to get k_off
+frac_on                                 0.99999
+k_off(promoter)                         0.031
+
+
+------------------
+GENERAL PARAMETERS
+------------------
+
+shutoff_equivalent                       90.0
+warm_up_time(s)                          -99999.0
+warm_up_std_dev(s)                       0.01
+warm_up_min(s)                           0.0
+

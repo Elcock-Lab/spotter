@@ -1,0 +1,17 @@
+Files included in this folder are related to Figures 10A and B.
+
+The RNAP rate file included has been generated with the NET-seq-derived
+energy function and has been set so that dwell times reproduce a mean
+elongation rate of 30 nt/s for lone RNAPs in the absence of supercoiling.
+
+Dwell times used to make the ribosome rate file were taken from Li et al.
+ribosome profiling data for cells in rich defined medium
+
+The included input file sets up simulations in which the gapA gene is
+enclosed within a topological domain subject to topoisomerase I and gyrase
+DNA relaxation reactions. RNAPs undergo rotaional relaxation as a function
+of nascent RNA length as described in the main text, and are released from
+backtracked pauses at their original pause sites when experiencing 5 pN nm
+or more of assistive torque. The RNAP initiation rate is set to 0.1 per
+second.
+
