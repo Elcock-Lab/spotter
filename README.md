@@ -647,7 +647,7 @@ simulation runner also accepts (and in some cases requires) additional input fil
 
 	  A template system settings file can be bound in EXAMPLES:
 
-		sys.template.inp
+		sys.BASIC_TEMPLATE.inp
 
  - **TRANSCRIPTIONAL settings input file (REQUIRED)**
 
@@ -663,7 +663,7 @@ simulation runner also accepts (and in some cases requires) additional input fil
 
 	  A template transcriptional input file can be bound in EXAMPLES:
 
-		tx.template.inp
+		tx.BAISC_TEMPLATE.inp
 
  - **a TRANSLATIONAL settings input file (REQUIRED)**
 
@@ -678,7 +678,7 @@ simulation runner also accepts (and in some cases requires) additional input fil
 
 	  An example of a transcriptional input file can be bound in EXAMPLES:
 
-		tsl.template.inp
+		tsl.BASIC_TEMPLATE.inp
 
  - **a SUPERCOILING settings input file (OPTIONAL)**
 
@@ -692,7 +692,7 @@ simulation runner also accepts (and in some cases requires) additional input fil
 
 	  A template supercoiling input file can be bound in EXAMPLES:
 
-		super.template.inp
+		super.BASIC_TEMPLATE.inp
 
  - **a GENE-REGULATION input file (OPTIONAL)**
 
@@ -702,7 +702,7 @@ simulation runner also accepts (and in some cases requires) additional input fil
 
 	  A template regulation input file can be bound in EXAMPLES:
 
-		reg.template.inp
+		reg.BASIC_TEMPLATE.inp
 
 ----
    #### Notes
