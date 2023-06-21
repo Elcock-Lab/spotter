@@ -96,6 +96,11 @@ EXTERN int TETHER_LENGTH;                                                       
 										// distance after formation of
 										// expressome
 
+EXTERN int TX_INIT_SC_FX;
+EXTERN float k_unbind;
+EXTERN float k_open;
+
+
 EXTERN int first_free_rnap;
 
 EXTERN float mu_term;
