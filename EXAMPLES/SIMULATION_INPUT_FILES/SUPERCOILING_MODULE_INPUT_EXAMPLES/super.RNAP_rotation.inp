@@ -179,3 +179,8 @@ length_exponent                          1.5			<-- Sets the exponent on the the 
 								    function used to determine RNA contribution to
 								    rotational resistance. Defaults to 1.5 (3/2).
 
+sigma_sensitive_init(y/n)                n                      <-- Determines whether or not the rate of the
+                                                                    closed-to-open transition is affected by
+                                                                    supercoiling density at the promoter.
+                                                                    Defaults to "no".
+
