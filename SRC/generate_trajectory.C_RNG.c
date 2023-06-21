@@ -501,6 +501,9 @@ int Generate_trajectory(int num_traj, float sim_stop,
 	BACKTRACK_ON = 1;		
 
 	TETHER_LENGTH = 5;
+
+        k_open = k_to_open;
+        k_unbind = k_unloading;
 	
 	printf("P P1 -> P2: %f\n",p_p1_to_p2);
 	printf("P P2 -> P3: %f\n",p_p2_to_p3);
@@ -530,6 +533,7 @@ int Generate_trajectory(int num_traj, float sim_stop,
 	NO_PAUSE_MODEL = OFF;
 	BACKTRACK_ON = OFF;
 	QUIET_MODE = OFF;
+	TX_INIT_SC_FX = OFF;
 	max_RNAP_load_gap = 9999999;
 	resist_exp = 1.5;
 

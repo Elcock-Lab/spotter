@@ -742,7 +742,11 @@ void Read_additional_parameters(char *name)
                 if (strcmp(label,"TSS_size_adj") == 0) {
                         sscanf(str,"%d",&TSS_adj);
                 }
-
+                if (strcmp(label,"sigma_sensit") == 0) {
+                        sscanf(str,"%s",on_off);
+                        TX_INIT_SC_FX = (on_off[0] == 'Y' ||
+                                         on_off[0] == 'y');
+                }
 
         }
         fclose(fp);

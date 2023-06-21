@@ -577,6 +577,8 @@ int Load_RNAP(double time, int promoter_index)
 {
 	double next_fire;
 	float try_it;
+        float promo_sc,sc_init_adj=1.0,p_init_adj;
+        float k_sc_open;
 	next_fire = time + Find_firing_time(mu_promo_load);
 
 	if (!(ONE_RNAP_RUN && RNAP_run_started)) {
@@ -616,10 +618,40 @@ int Load_RNAP(double time, int promoter_index)
 		   promoter[promoter_index][OLDEST_RNAP] = first_free_rnap;
 		}
 		promoter[promoter_index][NEWEST_RNAP] = first_free_rnap;
-		next_fire = time + Find_firing_time(mu_net_promo);
+	
+		p_init_adj = p_closed_to_open[promoter_index];
+                if (TX_INIT_SC_FX) {
+                  if (rnap[first_free_rnap][PLUS_ONE]) {
+                    promo_sc = sigma[rnap[first_free_rnap][PLUS_ONE]]
+                                    [UPSTREAM];
+                  }
+                  else {
+                    promo_sc = (open_lk[promoter_index]/
+                                relaxed_lk[stop_barrier - start_barrier])
+                                - 1.0;
+                  }
+                  sc_init_adj = exp(-122.0*promo_sc);
+                  if (sc_init_adj > 3.0) {
+                    sc_init_adj = 3.0;
+                  }
+                  if (sc_init_adj > 1.0/p_closed_to_open[promoter_index]) {
+                    sc_init_adj = (1.0/p_closed_to_open[promoter_index]) -
+                                  0.0001;
+                  }
+                  k_sc_open = (p_closed_to_open[promoter_index] *
+                               k_unbind) /
+                              ((1.0 / sc_init_adj) -
+                               p_closed_to_open[promoter_index]);
+                  next_fire = time + Find_firing_time(
+                                        1.0/(k_unbind + k_sc_open));
+		  p_init_adj *= sc_init_adj;
+                }
+                else {
+                  next_fire = time + Find_firing_time(mu_net_promo);
+                }
 
 		try_it = Sample_uniform_distribution();
-		if (try_it < p_closed_to_open[promoter_index]) {
+		if (try_it < p_init_adj) {
 			Add_reaction_to_queue(
 			  CLOSED_TO_OPEN_RXN(first_free_rnap),next_fire);
 		}
